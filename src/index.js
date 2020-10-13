@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import TodoList from './TodoList'
+// import TodoList from './TodoList'
+import TodoList2 from './TodoList2'
 
 ReactDOM.render(
-  <App />,
+  <TodoList2 />,
   document.getElementById('root')
 );
 
