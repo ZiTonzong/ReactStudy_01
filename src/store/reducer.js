@@ -1,8 +1,31 @@
+import {DELETE_TODO_ITEM, ADD_TODO_ITEM, CHANGE_INPUT_VALUE} from './actionTypes'
+
+
 const defaultState = {
-    inputValue: '123',
-    list: [1, 3]
+	inputValue: '',
+	list: []
 }
 
+// reducer 可以接收 state，但是不能修改 state
 export default (state = defaultState, action) => {
-    return state
+	if (action.type === CHANGE_INPUT_VALUE) {
+		const newState = JSON.parse(JSON.stringify(state))
+		newState.inputValue = action.value
+		return newState
+	}
+	if (action.type === ADD_TODO_ITEM) {
+		const newState = JSON.parse(JSON.stringify(state))
+		const tempNum = isNaN(+newState.inputValue) ? newState.inputValue : +newState.inputValue
+		newState.list.push(tempNum)
+		newState.inputValue = ''
+		console.log('newState', newState)
+		return newState
+	}
+	if (action.type === DELETE_TODO_ITEM) {
+		const newState = JSON.parse(JSON.stringify(state))
+		newState.list.splice(action.index, 1)
+		return newState
+	}
+	// console.log('111', state, action)
+	return state
 }
